@@ -1,0 +1,15 @@
+version: '2'
+services:
+  fpm:
+    image: zhonger/php:fpm-alpine
+    volumes:
+    - /home/zhonger/web/lab/console:/var/www/html
+
+  nginx:
+    ports:
+    - 10080:80/tcp
+    image: zhonger/nginx:alpine
+    links:
+    - fpm
+    volumes:
+    - /home/zhonger/web/lab/console:/var/www/html
